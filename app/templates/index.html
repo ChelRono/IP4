@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        {% if title %}
-        <title> {{ title }}</title>
-        {% else %}
-        <title> Welcome to my Blog </title>
-        {% endif %}
-    </head>
-    <body>
+{% import 'macros.html' as macro%}
+{% extends 'base.html'%}
+
+{% block content %}
   <!-- Popular movie section  -->
   <h3> Popular Quotes</h3>
   <ul>
-     {% for popular_quote in popular %}
-         <li>{{ popular_quotes.id}}</li>
-     {% endfor %}
- </ul>
-</ul>
-    </body>
-</html>
+      {{ macro.displayQuoteList(popular)}}
+  </ul>
+
+{% endblock%}
