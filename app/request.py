@@ -4,9 +4,9 @@ from .models import quotes
 
 
 Quotes = quotes.Quotes
-
+# api_key= app.config["QUOTE_API_KEY "]
 # Getting the movie base url
-base_url = app.config["QUOTE_URL"]
+base_url = app.config['QUOTE_URL']
 
 def get_quotes(category):
     '''
@@ -14,7 +14,7 @@ def get_quotes(category):
     '''
     get_quotes_url = base_url.format(category)
 
-    with urllib.request.urlopen(get_quotes_url) as url:
+    with urllib.request.urlopen( get_quotes_url) as url:
         get_quotes_data = url.read()
         get_quotes_response = json.loads(get_quotes_data)
 
@@ -39,13 +39,13 @@ def process_results(quotes_list):
     '''
     quotes_results = []
     for quotes_item in quotes_list:
-        id = quotes_item.get('id')
         author= quotes_item.get('author')
+        id = quotes_item.get('id')
         quote = quotes_item.get('quote')
-        poster=quotes_item.get('poster')
+        permalink=quotes_item.get('permalinl')
         
 
-        if poster:
+        if permalink:
             quotes_object =Quotes (id,author,quote)
             quotes_results.append(quotes_object)
 

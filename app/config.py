@@ -4,7 +4,7 @@ class Config:
     '''
     pass
 
-    QUOTE_URL='http://quotes.stormconsultancy.co.uk/popular.json'
+    QUOTE_URL='  http://quotes.stormconsultancy.co.uk/popular.json'
 
 
 class ProdConfig(Config):

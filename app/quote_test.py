@@ -11,7 +11,7 @@ class QuoteTest(unittest.TestCase):
         '''
         Set up method that will run before every Test
         '''
-        self.new_quote = Quotes(39,'Bjarne Stroustrup','In C++ it\u2019s harder to shoot yourself in the foot, but when you do, you blow off your whole leg.','"http://quotes.stormconsultancy.co.uk/quotes/"}')
+        self.new_quote = Quotes('Robert Sewell','41','If Java had true garbage collection, most programs would delete themselves upon execution.','http://quotes.stormconsultancy.co.uk/quotes/41')
 
     def test_instance(self):
         self.assertTrue(isinstance(self.new_quote,Quotes))

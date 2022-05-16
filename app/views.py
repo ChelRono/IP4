@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import render_template
 from app import app
 from .request import get_quotes
@@ -14,10 +15,11 @@ def index():
     title='Home-Welcome to my blog'
     return render_template('index.html', title=title, popular=popular_quotes)
 
-@app.route('/quote/<int:quote_id>')
-def quote(quote_id):
+@app.route('/quote/<quote_id>')
+def quote(id):
 
     '''
     View quote page function that returns the quote details page and its data
     '''
-    return render_template('quote.html',id = quote_id)
+    quotes = get_quotes(id)
+    return render_template('quote.html',id = quotes)
