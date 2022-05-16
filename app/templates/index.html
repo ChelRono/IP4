@@ -1,11 +1,13 @@
-{% import 'macros.html' as macro%}
 {% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+
 
 {% block content %}
   <!-- Popular movie section  -->
+  <div class="container">
   <h3> Popular Quotes</h3>
   <ul>
       {{ macro.displayQuoteList(popular)}}
   </ul>
-
+  </div>
 {% endblock%}
