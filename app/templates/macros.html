@@ -1,7 +1,15 @@
+
 {% macro displayQuoteList(quotes_list) %}
 
-    {% for quotes in quotes_list %}
-        <li>{{ quotes.author}}</li>
+{% for quotes in quotes_list %}
+        <div class=" col-sm-4 ">
+            
+            <li class="text-center">
+                {{quotes.author}}
+                    
+            </li>
+        </div>
+
     {% endfor %}
 
 {% endmacro %}

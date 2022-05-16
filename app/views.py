@@ -1,7 +1,7 @@
 from crypt import methods
 from flask import render_template, request
 from app import app
-from .request import get_quotes
+from .request import get_quotes,get_quote
 
 
 # Views
@@ -11,17 +11,17 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-    popular_quotes = get_quotes('popular')
-    print(popular_quotes)
+    random_quotes = get_quotes('random')
+    print(random_quotes)
     title='Home-Welcome to my blog'
-    return render_template('index.html', title=title, popular=popular_quotes)
+    return render_template('index.html', title=title, random=random_quotes)
 
 
-@app.route('/quote/<quote_id>')
-def quote(id):
+@app.route('/quote')
+def quote(quote):
 
     '''
     View quote page function that returns the quote details page and its data
     '''
-    
-    return render_template('quote.html')
+    quotes = get_quote(quote)
+    return render_template('quote.html', quote=quotes)

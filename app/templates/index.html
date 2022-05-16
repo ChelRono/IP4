@@ -1,13 +1,22 @@
 {% extends 'base.html'%}
 {% import 'macros.html' as macro%}
 
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
 
 {% block content %}
   <!-- Popular movie section  -->
   <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto p-3 my-3 bg-dark text-white">
   <h3> Popular Quotes</h3>
-  <ul>
-      {{ macro.displayQuoteList(popular)}}
-  </ul>
+  
+      {{ macro.displayQuoteList(random)}}
+      
+      </div>
+    </div>
   </div>
+  
 {% endblock%}
