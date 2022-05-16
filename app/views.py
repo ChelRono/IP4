@@ -2,6 +2,9 @@ from crypt import methods
 from flask import render_template, request
 from app import app
 from .request import get_quotes,get_quote
+from .models import 
+from .forms import QuoteForm
+Review = review.Review
 
 
 # Views
