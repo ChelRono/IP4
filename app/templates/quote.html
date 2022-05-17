@@ -1,18 +1,9 @@
-{% extends 'base.html'%}
-<!-- Content block -->
-{% block content %}
-<div class="container">
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 quotes-details">
+    <h3>{{ quotes.author }}</h3>
 
-    <!-- Poster background -->
-    <div class="row">
-       
-        
-        {{ macro.displayQuoteList(random)}}
-            
+    <p class="overview"> {{ quotes.quote }}</p>
 
+    
+    <a class="ratings" href="/quotes/post/new/{{quotes.id}}"> new post</a>
 
-        </div>
-    </div>
-
-
-{% endblock %}
+</div>
