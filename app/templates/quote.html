@@ -1,9 +1,29 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+
+<!-- Styles block -->
+
 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 quotes-details">
     <h3>{{ quotes.author }}</h3>
 
     <p class="overview"> {{ quotes.quote }}</p>
 
     
-    <a class="ratings" href="/quotes/post/new/{{quotes.id}}"> new post</a>
+    <a class="ratings" href="/quotes/new/{{quotes.quote}}"> new post</a>
+
+</div>
+
+<div class="row">
+
+    <h1>New posts</h1>
+    <hr>
+
+   
+        {{macro.displayPost(post)}}
+
+   
+
+        <a class="btn btn-success btn-lg text-center" href="/quotes/post/new/{{quotes.id}}"> Write a new post</a>
+  
 
 </div>

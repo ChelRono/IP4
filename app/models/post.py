@@ -13,5 +13,16 @@ class Post:
 
 
     @classmethod
-    def clear_reviews(cls):
+    def clear_post(cls):
         Post.all_posts.clear()
+
+    @classmethod
+    def get_post(cls,id):
+
+        response = []
+
+        for post in cls.all_posts:
+            if post.quote_id == id:
+                response.append(post)
+
+        return response

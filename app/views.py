@@ -14,10 +14,10 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-    random_quotes = get_quotes('random')
-    print(random_quotes)
+    popular_quotes = get_quotes('popular')
+    print(popular_quotes)
     title='Home-Welcome to my blog'
-    return render_template('index.html', title=title, random=random_quotes)
+    return render_template('index.html', title=title, popular=popular_quotes)
 
 
 @app.route('/quote')
@@ -27,9 +27,11 @@ def quote(quote):
     View quote page function that returns the quote details page and its data
     '''
     quotes = get_quote(quote)
-    return render_template('quote.html', quote=quotes)
+    author = f'{quotes.author}'
+    post = Post.get_post(quotes.id)
+    return render_template('quote.html', quote=quotes, post=post)
 
-@app.route('/quotes/post/new/<int:id>', methods = ['GET','POST'])
+@app.route('/quotes/new', methods = ['GET','POST'])
 def new_post(id):
     form = PostForm()
     quotes = get_quote(id)
@@ -39,7 +41,7 @@ def new_post(id):
         quote = form.quote.data
         new_post = Post(author, quote)
         new_post.save_post()
-        return redirect(url_for('quotes'))
+        return redirect(url_for('quotes',id=quotes.id))
 
     # title = f'{movie.title} review'
     return render_template('new_post.html', post_form=form, quotes=quotes)
