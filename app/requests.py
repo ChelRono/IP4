@@ -1,14 +1,20 @@
 from random import random
-from app import app
+
 import urllib.request,json
+from .models import Quotes
+from tests.quotes_test import Quotes
 
 
-from app.quotes_test import Quotes
-from .models import quotes
+# Quotes = quotes.Quotes
 
-Quotes = quotes.Quotes
+# Getting the movie base url
+base_url = None
 
-base_url='  http://quotes.stormconsultancy.co.uk/popular.json'
+def configure_request(app):
+    global base_url
+    base_url = app.config["QUOTES_BASE_URL"]
+
+# base_url='  http://quotes.stormconsultancy.co.uk/popular.json'
 
 
 

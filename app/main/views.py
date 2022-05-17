@@ -1,14 +1,15 @@
 from crypt import methods
 from flask import render_template, request, redirect,url_for
-from app import app
-from .request import get_quotes,get_quote
-from .models import post
+from . import main
+from ..requests import get_quotes,get_quote
+from ..models import Post
+
 from .forms import PostForm
-Post = post.Post
+# Post = post.Post
 
 
 # Views
-@app.route('/')
+@main.route('/')
 def index():
 
     '''
@@ -20,7 +21,7 @@ def index():
     return render_template('index.html', title=title, popular=popular_quotes)
 
 
-@app.route('/quote')
+@main.route('/quote')
 def quote(quote):
 
     '''
@@ -31,7 +32,7 @@ def quote(quote):
     post = Post.get_post(quotes.id)
     return render_template('quote.html', quote=quotes, post=post)
 
-@app.route('/quotes/new', methods = ['GET','POST'])
+@main.route('/quotes/new', methods = ['GET','POST'])
 def new_post(id):
     form = PostForm()
     quotes = get_quote(id)

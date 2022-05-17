@@ -1,6 +1,6 @@
 import unittest
-from app.models import quotes
-Quotes = quotes.Quotes
+from app.models import Quotes
+# Quotes = quotes.Quotes
 
 class QuoteTest(unittest.TestCase):
     '''
