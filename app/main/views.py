@@ -4,7 +4,7 @@ from . import main
 from ..requests import get_quotes,get_quote
 from ..models import Post,User
 from .forms import PostForm,UpdateProfile
-from flask_login import login_required
+from flask_login import login_required, current_user
 from .. import db,photos
 
 # Post = post.Post
@@ -88,3 +88,22 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+@main.route('/quotes/post/new/<int:id>', methods = ['GET','POST'])
+@login_required
+def new_review(id):
+    form = PostForm()
+    quotes = get_quote(id)
+    if form.validate_on_submit():
+        author = form.author.data
+        post = form.post.data
+
+        # Updated review instance
+        new_post = Post(quotes_id=quotes.id,quotes_author=author,quotes_post=post,user=current_user)
+
+        # save post method
+        new_post.save_review()
+        return redirect(url_for('.quotes',id = quotes.id ))
+
+    author = f'{quotes.author} post'
+    return render_template('new_post.html',author, post_form=form, quotes=quotes)

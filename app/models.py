@@ -2,6 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -19,7 +20,16 @@ class Quotes:
         self.author= author
         self.quote = quote
 
-class Post:
+class Post(db.Model):
+
+    __tablename__ = 'posts'
+
+    id = db.Column(db.Integer,primary_key = True)
+    quote_id = db.Column(db.Integer)
+    image_path = db.Column(db.String)
+    Post = db.Column(db.String)
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
 
     all_posts = []
 
@@ -56,6 +66,7 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(255),unique = True,index = True)
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     bio = db.Column(db.String(255))
+    post = db.relationship('Post',backref = 'user',lazy = "dynamic")
     profile_pic_path = db.Column(db.String())
     password_secure = db.Column(db.String(255))
 
@@ -88,3 +99,4 @@ class Role(db.Model):
 
     def __repr__(self):
         return f'User {self.name}'
+
