@@ -22,10 +22,17 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a class="nav-item nav-link" href="/">Quotes</a></li>
-                <li><a class="nav-item nav-link"   href="/">Post</a></li>
-                <li><a class="nav-item nav-link" href="/">Login</a></li>
-                <li><a class="nav-item nav-link"  href="/">Signup</a></li>
+                <li><a class="nav-item nav-link" href="{{quote}}">Quotes</a></li>
+                <li><a class="nav-item nav-link"   href="{{url_for('main.new_post')}}">Post</a></li>
+                <li><a class="nav-item nav-link"  href="{{url_for('auth.register')}}">Signup</a></li>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if current_user.is_authenticated %}
+                    <li style="color:white;padding:15px;">{{current_user.username}}</li>
+                    <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+                    {% else %}
+                    <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+                    {%endif%}
+                  </ul>
         </div>
 
     </div>

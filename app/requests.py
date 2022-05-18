@@ -1,6 +1,8 @@
 from random import random
 
 import urllib.request,json
+
+from instance.config import SECRET_KEY
 from .models import Quotes
 from tests.quotes_test import Quotes
 
@@ -11,8 +13,9 @@ from tests.quotes_test import Quotes
 base_url = None
 
 def configure_request(app):
-    global base_url
+    global base_url,SECRET_KEY
     base_url = app.config["QUOTES_BASE_URL"]
+    app.config['SECRET_KEY'] = 'any secret string'
 
 # base_url='  http://quotes.stormconsultancy.co.uk/popular.json'
 
