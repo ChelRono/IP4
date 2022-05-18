@@ -3,8 +3,8 @@ from flask import render_template, request, redirect,url_for
 from . import main
 from ..requests import get_quotes,get_quote
 from ..models import Post
-
 from .forms import PostForm
+from flask_login import login_required
 # Post = post.Post
 
 
@@ -30,9 +30,10 @@ def quote(quote):
     quotes = get_quote(quote)
     author = f'{quotes.author}'
     post = Post.get_post(quotes.id)
-    return render_template('quote.html', quote=quotes, post=post)
+    return render_template('quote.html', quote=quotes, post=post, author=author)
 
 @main.route('/quotes/new', methods = ['GET','POST'])
+@login_required
 def new_post(id):
     form = PostForm()
     quotes = get_quote(id)
