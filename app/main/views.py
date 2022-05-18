@@ -1,8 +1,8 @@
 from crypt import methods
-from flask import render_template, request, redirect,url_for
+from flask import render_template, request, redirect,url_for,abort
 from . import main
 from ..requests import get_quotes,get_quote
-from ..models import Post
+from ..models import Post,User
 from .forms import PostForm
 from flask_login import login_required
 # Post = post.Post
@@ -47,3 +47,12 @@ def new_post(id):
 
     # title = f'{movie.title} review'
     return render_template('new_post.html', post_form=form, quotes=quotes)
+
+@main.route('/user/<uname>')
+def profile(uname):
+    user = User.query.filter_by(username = uname).first()
+
+    if user is None:
+        abort(404)
+
+    return render_template("profile.html", user = user)
