@@ -5,6 +5,8 @@ import urllib.request,json
 from instance.config import SECRET_KEY
 from .models import Quotes
 from tests.quotes_test import Quotes
+import requests
+
 
 
 # Quotes = quotes.Quotes
@@ -15,9 +17,13 @@ base_url = None
 def configure_request(app):
     global base_url,SECRET_KEY
     base_url = app.config["QUOTES_BASE_URL"]
-    app.config['SECRET_KEY'] = 'any secret string'
+    app.config['SECRET_KEY'] = '12345'
 
-# base_url='  http://quotes.stormconsultancy.co.uk/popular.json'
+    
+
+
+
+
 
 
 
@@ -82,3 +88,20 @@ def get_quote(quote):
 
     return quotes_object
 
+def get_random_quote():
+	try:
+		## making the get request
+		response = requests.get("https://quote-garden.herokuapp.com/api/v3/quotes/random")
+		if response.status_code == 200:
+			## extracting the core data
+			json_data = response.json()
+			data = json_data['data']
+
+			## getting the quote from the data
+			print(data[0]['quoteText'])
+		else:
+			print("Error while getting quote")
+	except:
+		print("Something went wrong! Try Again!")
+
+get_random_quote()

@@ -1,0 +1,44 @@
+body {
+    background-color: rgba(137, 140, 123, 1);
+    min-height: 300px;
+    text-align: center;
+    font-family: Georgia, Times, Serif;
+  }
+  
+  h1, h2 {
+    font-family: Georgia, Times, Serif;
+  }
+  
+  main {
+    width: 80%;
+    margin: 0 auto;
+    min-height: 100%;
+    background-color: rgba(181, 186, 162, 0.7);
+  }
+  
+  button, button:focus {
+    background-color: rgb(92, 100, 96);
+    border: 2px ridge white;
+    border-radius: 5%;
+  }
+  
+  button:hover {
+    background-color: rgb(87, 89, 88);
+  }
+  
+  div.quote {
+    padding: 20px;
+    margin: 30px auto;
+    border: 5px solid white;
+    box-shadow: 5px 5px 1px rgb(87, 89, 88); 
+  }
+  
+  blockquote {
+    font-size: 140%;
+    font-weight: bold;
+  }
+  
+  div.quote p {
+    margin-bottom: 50px;
+    font-style: italic;
+  }

@@ -7,14 +7,17 @@
 {% endblock %}
 
 {% block content %}
-  <!-- Popular movie section  -->
+  
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto p-3 my-3 bg-dark text-white">
-  <h3> Popular Quotes</h3>
+        <h3> Popular Quotes</h3>
+        <div class="img">
+        
   
-      {{ macro.displayQuoteList(random)}}
-      
+  
+      {{ macro.displayQuoteList(Quotes)}}
+        </div>
       </div>
     </div>
   </div>

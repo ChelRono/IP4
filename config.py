@@ -1,31 +1,44 @@
 import os
 
 class Config:
-    '''
-    General configuration parent class
-    '''
-    pass
 
-   
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    '''
+    class config
+    '''
+    SECRET_KEY=os.environ.get('SECRET_KEY')
     QUOTES_BASE_URL =' http://quotes.stormconsultancy.co.uk/popular.json'
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://valarie:1033927@localhost/blog'
-    UPLOADED_PHOTOS_DEST ='app/static/photos'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    
+    @staticmethod
+    def init_app(app):
+        pass
+
+
 
 class ProdConfig(Config):
+    '''
+    Production  configuration child class
+    Args:
+        Config: The parent configuration class with General configuration settings
+    '''
     pass
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://valarie:1033927@localhost/blog'
+    '''
+    test configurations
+    '''
+    pass
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://valarie:1033927@localhost/blog'
-    DEBUG = True
+    '''
+    Development  configuration child class
+    Args:
+        Config: The parent configuration class with General configuration settings
+    '''
 
+    DEBUG = True
+    pass
 config_options = {
 'development':DevConfig,
-'production':ProdConfig,
-'test':TestConfig
+'test':TestConfig,
+'production':ProdConfig
 }
